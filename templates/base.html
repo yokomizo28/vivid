@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+    <script type="text/javascript" src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}{% endblock head %}
+</head>
+<body>
+    <!-- 共通パーツ(header) -->
+    <header class="fixed top-0 z-10 block w-full h-14">
+        <div class="h-wrap flex flex-wrap items-center justify-between block w-max h-full px-2">
+            <h1 class="header-title mr-0 md:mr-8 mb-1">
+                <a href="{% url 'top:index' %}" class="inline-block px-3">
+                    <span class="text-3xl md:text-4xl font-bold">ViViD</span>
+                </a>
+            </h1>
+            <nav class="header-nav">
+                <ul class="flex flex-row">
+                    <li>
+                        <a href="{% url 'search:index' %}" class="inline-block px-4 py-2">
+                            <span class="text-1xl md:text-2xl">SEARCH</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content block w-full mt-14">
+        <!-- block ~ endblock の外は共通で表示される部分 -->
+        {% block content %}
+        <!-- 各htmlページ固有の内容が反映・表示される箇所 -->
+        {% endblock content %}
+    </div>
+
+
+{#    <footer class="pt-2 pb-4 flex justify-center"><!-- 英字だと、上のpaddingの方が大きく見える(py-0とすると違和感) -->#}
+{#        <div class="text-white">footer</div>#}
+{#    </footer>#}
+</body>
+</html>

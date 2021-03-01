@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}コンテンツを探す{% endblock title %}
+    {% block head %}
+        <script type="text/javascript" src="{% static 'js/search.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    {% endblock head %}
+</head>
+<body>
+{% block content %}
+    <div class="content block">
+        <div class="px-6 md:px-20 py-10 md:py-16">
+            <h1 class="mb-4">映画を検索する</h1>
+            <form id="search-form" action="" method="GET">
+{#                <div>#}
+{#                    {{ search_form.title }}#}
+{#                    <button type="submit" id="search_button">検索</button>#}
+{#                </div>#}
+                <div>
+                    <p class="open mb-2">ジャンル</p>
+                    <div class="form mb-6">{{ search_form.genres }}</div>
+                </div>
+                <div>
+                    <p class="open mb-2">サービス</p>
+                    <div class="form mb-6">{{ search_form.services }}</div>
+                </div>
+                <div>
+                    <p class="open md:mb-2">タグ</p>
+                    <div class="form">{{ search_form.tags }}</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="block grid grid-cols-10 justify-items-center mx-6 md:mx-10">
+            {% for content in content_list %}
+                <a class="block mb-8 col-span-5 md:col-span-3 lg:col-span-2" href="{% url 'contents:index' content.pk %}">
+                    <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                    class="bg-gray-300">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
+</body>
+</html>

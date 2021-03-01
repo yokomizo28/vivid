@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}vivid{% endblock title %}</title>
+    {% block head %}
+        <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/top.css' %}">
+    {% endblock head %}
+</head>
+    {% block content %}
+        <div class="concept block">
+{#            <div class="info_1 block py-10">#}
+{#                <div class="ml-0 md:ml-16 lg:ml-36">#}
+{#                    <h2 class="text-center md:text-left mb-4">ジャンルや特徴で映画が探せる</h2>#}
+{#                    <p class="text-center md:text-left">あんなのが見たい…。こんなのが見たい…。<br>#}
+{#                        何となくのイメージから、見たい映画が見つけられる。#}
+{#                    </p>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="info_2 block py-10">#}
+{#                <div class="mr-0 md:mr-16 lg:mr-36">#}
+{#                    <h2 class="text-center md:text-right mb-4">映画配信サービスも一緒に知れる</h2>#}
+{#                    <p class="text-center md:text-right">見たい映画を見つけてから、対応する配信サービスを探す手間なし！#}
+{#                        <br>逆に、配信サービスから映画を絞り込む事も。</p>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="info_1 block py-10">
+                <div>
+                    <h2 class="text-center mb-4">ジャンルや特徴で映画が探せる</h2>
+                    <p class="text-center">あんなのが見たい…。こんなのが見たい…。<br>
+                        何となくのイメージから、見たい映画が見つけられる。
+                    </p>
+                </div>
+            </div>
+            <div class="info_2 block py-10">
+                <div>
+                    <h2 class="text-center mb-4">映画配信サービスも一緒に知れる</h2>
+                    <p class="text-center">見たい映画を見つけてから、対応する配信サービスを探す手間なし！
+                        <br>逆に、配信サービスから映画を絞り込む事も。</p>
+                </div>
+            </div>
+
+            <div class="info_3 block py-16">
+                <div>
+                    <h2 class="text-center mb-2">ViViDで映画を探してみる</h2>
+                    <p class="block w-max mx-auto seach-link"><a href="{% url 'search:index' %}">SEARCH</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="rand-lists block mt-24 md:mt-32 mb-20 mx-0 md:mx-10">
+            <div class="netflix block relative mt-24">
+                <h3 class="text-center mb-4 md:mb-8">
+                    <span class="service">NETFLIX</span>
+                </h3>
+                <div class="block relative w-full flex flex-row flex-nowrap px-8 items-center">
+                    <div class="arrow1 hidden lg:block w-20 h-20 border-solid border-t-8 border-l-8 transform -rotate-45"></div>
+                    <div class="block md:w-11/12 overflow-auto lg:overflow-x-hidden relative">
+                        <div class="slide block w-max relative">
+                        {% for content in netflix %}
+                            <a class="block float-left" href="{% url 'contents:index' content.pk %}">
+                                <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                                class="bg-gray-300">
+                            </a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="arrow2 hidden lg:block w-20 h-20 border-solid border-t-8 border-r-8 transform rotate-45"></div>
+                </div>
+            </div>
+
+            <div class="prime-video block relative mt-24 md:mt-32">
+                <h3 class="text-center mb-8">
+                    <span class="service">Amazon Prime Video</span>
+                </h3>
+                <div class="block relative w-full flex flex-row flex-nowrap px-8 items-center">
+                    <div class="arrow1 hidden md:block w-20 h-20 border-solid border-t-8 border-l-8 transform -rotate-45"></div>
+                    <div class="block md:w-11/12 overflow-auto md:overflow-x-hidden relative">
+                        <div class="slide block w-max relative">
+                        {% for content in prime_video %}
+                            <a class="block float-left" href="{% url 'contents:index' content.pk %}">
+                                <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                                class="bg-gray-300">
+                            </a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="arrow2 hidden md:block w-20 h-20 border-solid border-t-8 border-r-8 transform rotate-45"></div>
+                </div>
+            </div>
+
+            <div class="u-next block relative mt-24 md:mt-32">
+                <h3 class="text-center mb-8">
+                    <span class="service">U-NEXT</span>
+                </h3>
+                <div class="block relative w-full flex flex-row flex-nowrap px-8 items-center">
+                    <div class="arrow1 hidden md:block w-20 h-20 border-solid border-t-8 border-l-8 transform -rotate-45"></div>
+                    <div class="block md:w-11/12 overflow-auto md:overflow-x-hidden relative">
+                        <div class="slide block w-max relative">
+                        {% for content in u_next %}
+                            <a class="block float-left" href="{% url 'contents:index' content.pk %}">
+                                <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                                class="bg-gray-300">
+                            </a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="arrow2 hidden md:block w-20 h-20 border-solid border-t-8 border-r-8 transform rotate-45"></div>
+                </div>
+            </div>
+
+            <div class="hulu block relative mt-24 md:mt-32">
+                <h3 class="text-center mb-8">
+                    <span class="service">Hulu</span>
+                </h3>
+                <div class="block relative w-full flex flex-row flex-nowrap px-8 items-center">
+                    <div class="arrow1 hidden md:block w-20 h-20 border-solid border-t-8 border-l-8 transform -rotate-45"></div>
+                    <div class="block md:w-11/12 overflow-auto md:overflow-x-hidden relative">
+                        <div class="slide block w-max relative">
+                        {% for content in hulu %}
+                            <a class="block float-left" href="{% url 'contents:index' content.pk %}">
+                                <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                                class="bg-gray-300">
+                            </a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="arrow2 hidden md:block w-20 h-20 border-solid border-t-8 border-r-8 transform rotate-45"></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    {% endblock content %}
+</html>

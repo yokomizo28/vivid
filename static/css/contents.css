@@ -1,0 +1,57 @@
+.detail img{
+    width: 200px;
+    height: 280px;
+    border: solid 1px rgba(200, 200, 200, 0.3);
+}
+
+.title h1{
+    font-size: 30px;
+}
+
+.summary p {
+    font-size: 18px;
+}
+
+.service p,.tag p{
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.service ul li,.tag ul li{
+    font-size: 18px;
+    padding: 4px 16px;
+    border-radius: 20px;
+    background: linear-gradient( 135deg, rgba(246, 255, 0, 0.8),rgba(255, 0, 161, 0.8));
+
+}
+
+.series h3{
+    font-size: 22px;
+}
+
+.series img {
+    width: 150px;
+    height: 210px;
+    margin-right: 10px;
+    border: solid 1px rgba(200, 200, 200, 0.3);
+}
+
+
+@media (min-width: 768px) {
+    .detail img{
+        width: 300px;
+        height: 420px;
+    }
+
+    .title h1{
+        font-size: 36px;
+    }
+
+    .series img {
+        width: 200px;
+        height: 280px;
+        margin-right: 20px;
+    }
+
+
+}

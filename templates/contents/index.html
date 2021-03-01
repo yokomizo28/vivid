@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block head %}
+        <link rel="stylesheet" href="{% static 'css/contents.css' %}">
+    {% endblock head %}
+</head>
+<body>
+{% block content %}
+{#    md:px-10 lg:px-24#}
+    <div class="content block h-auto pt-16 pb-16 md:pt-20 mx-8 md:px-24">
+        <div class="detail block flex flex-col items-center md:flex-row md:items-start pb-10 md:pb-16">
+            <!-- imgを正方形にするか -->
+            <div class="image flex-none md:mr-10 lg:mr-14">
+                <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                     class="bg-gray-300">
+            </div>
+            <div class="flex flex-col items-center md:items-start md:flex-auto pt-8 md:pt-0">
+                <div class="title mb-4 self-center md:self-start">
+                    <h1>{{ content.title }}</h1>
+                </div>
+
+                <div class="summary w-full px-0 md:px-4 mb-6">
+                    <p>{{ content.summary }}</p>
+                </div>
+
+                <div class="service mb-4 px-0 md:px-4">
+                    <p>配信サービス</p>
+                    <ul class="flex flex-wrap gap-2">
+                    {% for service in content.services.all %}
+                        <li class="relative inline-block">
+                            {{ service }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="tag mb-4 px-0 md:px-4">
+                    <p>タグ</p>
+                    <ul class="flex flex-wrap gap-2">
+                    {% for tag in content.tags.all %}
+                        <li class="relative inline-block">
+                            {{ tag }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {% if series %}
+            <div class="series block">
+                <h3 class="mb-2">
+                    <span>シリーズ他作品</span>
+                </h3>
+                <div class="block w-full overflow-x-auto">
+                    <div class="block w-max relative">
+                    {% for content in series %}
+                        <a class="inline-block float-left" href="{% url 'contents:index' content.pk %}">
+                            <img src="{{ MEDIA_URL }}{{ content.image }}" alt="{{ content.image }}"
+                            class="bg-gray-300">
+                        </a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+</body>
+</html>
